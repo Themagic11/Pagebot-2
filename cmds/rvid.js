@@ -2,24 +2,24 @@ const axios = require('axios');
 const { sendMessage } = require('../handles/message');
 
 module.exports = {
-  name: "rvid",
-  description: "Send a random  video",
+  name: "shoti2",
+  description: "Send a shoti 2 video beta test",
   author: "mark",
 
   async execute(senderId, args, pageAccessToken) {
     try {
-      const response = await axios.get('https://random-video-api-sjvq.onrender.com/vid');
-      const { link: link, random, author, } = response.data;
+      const response = await axios.get('shotiurl'); // bro yung shoti url paltan mo ng shoti url mo
+      const { url, name, description } = response.data;
 
       await sendMessage(senderId, {
-        text: ` Username: ${random}\n💟 author: ${author}\n`
+        text: ` Username: ${name}\nauthor: ${author}\n`
       }, pageAccessToken);
 
       await sendMessage(senderId, {
         attachment: {
           type: "video",
           payload: {
-            url: link
+            url: url
           }
         }
       }, pageAccessToken);
